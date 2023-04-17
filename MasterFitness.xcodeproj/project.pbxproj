@@ -12,6 +12,14 @@
 		CEFF43EA29ED8F9A00FB652A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CEFF43E929ED8F9A00FB652A /* Assets.xcassets */; };
 		CEFF43ED29ED8F9A00FB652A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CEFF43EB29ED8F9A00FB652A /* LaunchScreen.storyboard */; };
 		CEFF43F629ED947F00FB652A /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEFF43F529ED947F00FB652A /* ViewController.swift */; };
+		CEFF43F829ED971D00FB652A /* ForgotPassViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEFF43F729ED971D00FB652A /* ForgotPassViewController.swift */; };
+		CEFF43FA29ED973300FB652A /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEFF43F929ED973300FB652A /* HomeViewController.swift */; };
+		CEFF43FC29ED974500FB652A /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEFF43FB29ED974500FB652A /* LoginViewController.swift */; };
+		CEFF43FE29ED977D00FB652A /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEFF43FD29ED977D00FB652A /* RegisterViewController.swift */; };
+		CEFF440029ED979400FB652A /* WebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEFF43FF29ED979400FB652A /* WebViewController.swift */; };
+		CEFF440429ED98FB00FB652A /* AuthHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEFF440329ED98FB00FB652A /* AuthHeaderView.swift */; };
+		CEFF440629ED992C00FB652A /* CustomButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEFF440529ED992C00FB652A /* CustomButton.swift */; };
+		CEFF440829ED995900FB652A /* CustomTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEFF440729ED995900FB652A /* CustomTextField.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,6 +30,14 @@
 		CEFF43EC29ED8F9A00FB652A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		CEFF43EE29ED8F9A00FB652A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CEFF43F529ED947F00FB652A /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		CEFF43F729ED971D00FB652A /* ForgotPassViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPassViewController.swift; sourceTree = "<group>"; };
+		CEFF43F929ED973300FB652A /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		CEFF43FB29ED974500FB652A /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		CEFF43FD29ED977D00FB652A /* RegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
+		CEFF43FF29ED979400FB652A /* WebViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebViewController.swift; sourceTree = "<group>"; };
+		CEFF440329ED98FB00FB652A /* AuthHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthHeaderView.swift; sourceTree = "<group>"; };
+		CEFF440529ED992C00FB652A /* CustomButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomButton.swift; sourceTree = "<group>"; };
+		CEFF440729ED995900FB652A /* CustomTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextField.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -54,20 +70,44 @@
 		CEFF43DF29ED8F9300FB652A /* MasterFitness */ = {
 			isa = PBXGroup;
 			children = (
-				CEFF43F429ED945200FB652A /* Views */,
-				CEFF43E029ED8F9300FB652A /* AppDelegate.swift */,
-				CEFF43E229ED8F9300FB652A /* SceneDelegate.swift */,
-				CEFF43E929ED8F9A00FB652A /* Assets.xcassets */,
-				CEFF43EB29ED8F9A00FB652A /* LaunchScreen.storyboard */,
+				CEFF440229ED98C200FB652A /* Views */,
+				CEFF43F429ED945200FB652A /* Controller */,
+				CEFF440129ED986700FB652A /* Supporting */,
 				CEFF43EE29ED8F9A00FB652A /* Info.plist */,
 			);
 			path = MasterFitness;
 			sourceTree = "<group>";
 		};
-		CEFF43F429ED945200FB652A /* Views */ = {
+		CEFF43F429ED945200FB652A /* Controller */ = {
 			isa = PBXGroup;
 			children = (
 				CEFF43F529ED947F00FB652A /* ViewController.swift */,
+				CEFF43F729ED971D00FB652A /* ForgotPassViewController.swift */,
+				CEFF43F929ED973300FB652A /* HomeViewController.swift */,
+				CEFF43FB29ED974500FB652A /* LoginViewController.swift */,
+				CEFF43FD29ED977D00FB652A /* RegisterViewController.swift */,
+				CEFF43FF29ED979400FB652A /* WebViewController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		CEFF440129ED986700FB652A /* Supporting */ = {
+			isa = PBXGroup;
+			children = (
+				CEFF43E229ED8F9300FB652A /* SceneDelegate.swift */,
+				CEFF43E929ED8F9A00FB652A /* Assets.xcassets */,
+				CEFF43EB29ED8F9A00FB652A /* LaunchScreen.storyboard */,
+				CEFF43E029ED8F9300FB652A /* AppDelegate.swift */,
+			);
+			path = Supporting;
+			sourceTree = "<group>";
+		};
+		CEFF440229ED98C200FB652A /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				CEFF440329ED98FB00FB652A /* AuthHeaderView.swift */,
+				CEFF440529ED992C00FB652A /* CustomButton.swift */,
+				CEFF440729ED995900FB652A /* CustomTextField.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -142,9 +182,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CEFF43FC29ED974500FB652A /* LoginViewController.swift in Sources */,
+				CEFF440829ED995900FB652A /* CustomTextField.swift in Sources */,
+				CEFF43FA29ED973300FB652A /* HomeViewController.swift in Sources */,
+				CEFF43FE29ED977D00FB652A /* RegisterViewController.swift in Sources */,
+				CEFF43F829ED971D00FB652A /* ForgotPassViewController.swift in Sources */,
+				CEFF440629ED992C00FB652A /* CustomButton.swift in Sources */,
+				CEFF440429ED98FB00FB652A /* AuthHeaderView.swift in Sources */,
 				CEFF43F629ED947F00FB652A /* ViewController.swift in Sources */,
 				CEFF43E129ED8F9300FB652A /* AppDelegate.swift in Sources */,
 				CEFF43E329ED8F9300FB652A /* SceneDelegate.swift in Sources */,
+				CEFF440029ED979400FB652A /* WebViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
