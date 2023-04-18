@@ -21,6 +21,11 @@
 		CEFF440629ED992C00FB652A /* CustomButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEFF440529ED992C00FB652A /* CustomButton.swift */; };
 		CEFF440829ED995900FB652A /* CustomTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEFF440729ED995900FB652A /* CustomTextField.swift */; };
 		CEFF440A29EECCC000FB652A /* AlertManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEFF440929EECCC000FB652A /* AlertManager.swift */; };
+		CEFF440C29EED06F00FB652A /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = CEFF440B29EED06E00FB652A /* GoogleService-Info.plist */; };
+		CEFF440F29EED22B00FB652A /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = CEFF440E29EED22B00FB652A /* FirebaseAuth */; };
+		CEFF441129EED22B00FB652A /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = CEFF441029EED22B00FB652A /* FirebaseFirestore */; };
+		CEFF441329EED22B00FB652A /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = CEFF441229EED22B00FB652A /* FirebaseStorage */; };
+		CEFF441529EEDDD300FB652A /* AuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEFF441429EEDDD300FB652A /* AuthService.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -40,6 +45,8 @@
 		CEFF440529ED992C00FB652A /* CustomButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomButton.swift; sourceTree = "<group>"; };
 		CEFF440729ED995900FB652A /* CustomTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextField.swift; sourceTree = "<group>"; };
 		CEFF440929EECCC000FB652A /* AlertManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertManager.swift; sourceTree = "<group>"; };
+		CEFF440B29EED06E00FB652A /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		CEFF441429EEDDD300FB652A /* AuthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthService.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -47,6 +54,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CEFF440F29EED22B00FB652A /* FirebaseAuth in Frameworks */,
+				CEFF441129EED22B00FB652A /* FirebaseFirestore in Frameworks */,
+				CEFF441329EED22B00FB652A /* FirebaseStorage in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -77,6 +87,7 @@
 				CEFF440129ED986700FB652A /* Supporting */,
 				CEFF43EE29ED8F9A00FB652A /* Info.plist */,
 				CEFF440929EECCC000FB652A /* AlertManager.swift */,
+				CEFF441429EEDDD300FB652A /* AuthService.swift */,
 			);
 			path = MasterFitness;
 			sourceTree = "<group>";
@@ -97,6 +108,7 @@
 		CEFF440129ED986700FB652A /* Supporting */ = {
 			isa = PBXGroup;
 			children = (
+				CEFF440B29EED06E00FB652A /* GoogleService-Info.plist */,
 				CEFF43E229ED8F9300FB652A /* SceneDelegate.swift */,
 				CEFF43E929ED8F9A00FB652A /* Assets.xcassets */,
 				CEFF43EB29ED8F9A00FB652A /* LaunchScreen.storyboard */,
@@ -131,6 +143,11 @@
 			dependencies = (
 			);
 			name = MasterFitness;
+			packageProductDependencies = (
+				CEFF440E29EED22B00FB652A /* FirebaseAuth */,
+				CEFF441029EED22B00FB652A /* FirebaseFirestore */,
+				CEFF441229EED22B00FB652A /* FirebaseStorage */,
+			);
 			productName = MasterFitness;
 			productReference = CEFF43DD29ED8F9300FB652A /* MasterFitness.app */;
 			productType = "com.apple.product-type.application";
@@ -159,6 +176,9 @@
 				Base,
 			);
 			mainGroup = CEFF43D429ED8F9300FB652A;
+			packageReferences = (
+				CEFF440D29EED22B00FB652A /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+			);
 			productRefGroup = CEFF43DE29ED8F9300FB652A /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -175,6 +195,7 @@
 			files = (
 				CEFF43ED29ED8F9A00FB652A /* LaunchScreen.storyboard in Resources */,
 				CEFF43EA29ED8F9A00FB652A /* Assets.xcassets in Resources */,
+				CEFF440C29EED06F00FB652A /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -191,6 +212,7 @@
 				CEFF43FE29ED977D00FB652A /* RegisterViewController.swift in Sources */,
 				CEFF43F829ED971D00FB652A /* ForgotPassViewController.swift in Sources */,
 				CEFF440629ED992C00FB652A /* CustomButton.swift in Sources */,
+				CEFF441529EEDDD300FB652A /* AuthService.swift in Sources */,
 				CEFF440429ED98FB00FB652A /* AuthHeaderView.swift in Sources */,
 				CEFF43F629ED947F00FB652A /* ViewController.swift in Sources */,
 				CEFF440A29EECCC000FB652A /* AlertManager.swift in Sources */,
@@ -406,6 +428,35 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		CEFF440D29EED22B00FB652A /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/firebase/firebase-ios-sdk";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 9.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		CEFF440E29EED22B00FB652A /* FirebaseAuth */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = CEFF440D29EED22B00FB652A /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAuth;
+		};
+		CEFF441029EED22B00FB652A /* FirebaseFirestore */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = CEFF440D29EED22B00FB652A /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseFirestore;
+		};
+		CEFF441229EED22B00FB652A /* FirebaseStorage */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = CEFF440D29EED22B00FB652A /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseStorage;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = CEFF43D529ED8F9300FB652A /* Project object */;
 }
