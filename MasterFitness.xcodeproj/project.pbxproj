@@ -20,6 +20,7 @@
 		CEFF440429ED98FB00FB652A /* AuthHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEFF440329ED98FB00FB652A /* AuthHeaderView.swift */; };
 		CEFF440629ED992C00FB652A /* CustomButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEFF440529ED992C00FB652A /* CustomButton.swift */; };
 		CEFF440829ED995900FB652A /* CustomTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEFF440729ED995900FB652A /* CustomTextField.swift */; };
+		CEFF440A29EECCC000FB652A /* AlertManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEFF440929EECCC000FB652A /* AlertManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -38,6 +39,7 @@
 		CEFF440329ED98FB00FB652A /* AuthHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthHeaderView.swift; sourceTree = "<group>"; };
 		CEFF440529ED992C00FB652A /* CustomButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomButton.swift; sourceTree = "<group>"; };
 		CEFF440729ED995900FB652A /* CustomTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextField.swift; sourceTree = "<group>"; };
+		CEFF440929EECCC000FB652A /* AlertManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -74,6 +76,7 @@
 				CEFF43F429ED945200FB652A /* Controller */,
 				CEFF440129ED986700FB652A /* Supporting */,
 				CEFF43EE29ED8F9A00FB652A /* Info.plist */,
+				CEFF440929EECCC000FB652A /* AlertManager.swift */,
 			);
 			path = MasterFitness;
 			sourceTree = "<group>";
@@ -190,6 +193,7 @@
 				CEFF440629ED992C00FB652A /* CustomButton.swift in Sources */,
 				CEFF440429ED98FB00FB652A /* AuthHeaderView.swift in Sources */,
 				CEFF43F629ED947F00FB652A /* ViewController.swift in Sources */,
+				CEFF440A29EECCC000FB652A /* AlertManager.swift in Sources */,
 				CEFF43E129ED8F9300FB652A /* AppDelegate.swift in Sources */,
 				CEFF43E329ED8F9300FB652A /* SceneDelegate.swift in Sources */,
 				CEFF440029ED979400FB652A /* WebViewController.swift in Sources */,

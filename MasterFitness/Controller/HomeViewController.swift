@@ -27,6 +27,18 @@ class HomeViewController: UIViewController {
     }
 
     private func setupUI(){
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Logout", style: .plain, target: self, action: #selector(didTapLogOut))
 
-    }
+                self.view.addSubview(label)
+
+                self.label.translatesAutoresizingMaskIntoConstraints = false
+
+                NSLayoutConstraint.activate([
+                    self.label.centerXAnchor.constraint(equalTo: self.view.centerXAnchor),
+                    self.label.centerYAnchor.constraint(equalTo: self.view.centerYAnchor)
+                ])
+
+            }
+
+    @objc private func didTapLogOut(){}
 }

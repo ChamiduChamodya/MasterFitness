@@ -34,8 +34,9 @@ class LoginViewController: UIViewController {
 
     @objc private func didTapSignIn(){
         let vc = HomeViewController()
-        vc.modalPresentationStyle = .fullScreen
-        self.present(vc, animated: false, completion: nil)
+        let nav = UINavigationController(rootViewController: vc)
+        nav.modalPresentationStyle = .fullScreen
+        self.present(nav, animated: false, completion: nil)
     }
 
     @objc private func didTapNewUser(){
