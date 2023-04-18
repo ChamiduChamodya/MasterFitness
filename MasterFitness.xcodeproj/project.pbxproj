@@ -26,6 +26,7 @@
 		CEFF441129EED22B00FB652A /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = CEFF441029EED22B00FB652A /* FirebaseFirestore */; };
 		CEFF441329EED22B00FB652A /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = CEFF441229EED22B00FB652A /* FirebaseStorage */; };
 		CEFF441529EEDDD300FB652A /* AuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEFF441429EEDDD300FB652A /* AuthService.swift */; };
+		CEFF441829EEDFB700FB652A /* RegisterUserRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEFF441729EEDFB700FB652A /* RegisterUserRequest.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -47,6 +48,7 @@
 		CEFF440929EECCC000FB652A /* AlertManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertManager.swift; sourceTree = "<group>"; };
 		CEFF440B29EED06E00FB652A /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		CEFF441429EEDDD300FB652A /* AuthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthService.swift; sourceTree = "<group>"; };
+		CEFF441729EEDFB700FB652A /* RegisterUserRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterUserRequest.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -82,6 +84,7 @@
 		CEFF43DF29ED8F9300FB652A /* MasterFitness */ = {
 			isa = PBXGroup;
 			children = (
+				CEFF441629EEDF7E00FB652A /* Models */,
 				CEFF440229ED98C200FB652A /* Views */,
 				CEFF43F429ED945200FB652A /* Controller */,
 				CEFF440129ED986700FB652A /* Supporting */,
@@ -125,6 +128,14 @@
 				CEFF440729ED995900FB652A /* CustomTextField.swift */,
 			);
 			path = Views;
+			sourceTree = "<group>";
+		};
+		CEFF441629EEDF7E00FB652A /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				CEFF441729EEDFB700FB652A /* RegisterUserRequest.swift */,
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -219,6 +230,7 @@
 				CEFF43E129ED8F9300FB652A /* AppDelegate.swift in Sources */,
 				CEFF43E329ED8F9300FB652A /* SceneDelegate.swift in Sources */,
 				CEFF440029ED979400FB652A /* WebViewController.swift in Sources */,
+				CEFF441829EEDFB700FB652A /* RegisterUserRequest.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
