@@ -29,6 +29,7 @@
 		CEFF441829EEDFB700FB652A /* RegisterUserRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEFF441729EEDFB700FB652A /* RegisterUserRequest.swift */; };
 		CEFF441A29EEE21500FB652A /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEFF441929EEE21500FB652A /* User.swift */; };
 		CEFF441C29EEE23A00FB652A /* LoginUserRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEFF441B29EEE23A00FB652A /* LoginUserRequest.swift */; };
+		CEFF441E29F042A600FB652A /* Validator.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEFF441D29F042A600FB652A /* Validator.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -53,6 +54,7 @@
 		CEFF441729EEDFB700FB652A /* RegisterUserRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterUserRequest.swift; sourceTree = "<group>"; };
 		CEFF441929EEE21500FB652A /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		CEFF441B29EEE23A00FB652A /* LoginUserRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginUserRequest.swift; sourceTree = "<group>"; };
+		CEFF441D29F042A600FB652A /* Validator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Validator.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -95,6 +97,7 @@
 				CEFF43EE29ED8F9A00FB652A /* Info.plist */,
 				CEFF440929EECCC000FB652A /* AlertManager.swift */,
 				CEFF441429EEDDD300FB652A /* AuthService.swift */,
+				CEFF441D29F042A600FB652A /* Validator.swift */,
 			);
 			path = MasterFitness;
 			sourceTree = "<group>";
@@ -235,6 +238,7 @@
 				CEFF441A29EEE21500FB652A /* User.swift in Sources */,
 				CEFF43F629ED947F00FB652A /* ViewController.swift in Sources */,
 				CEFF440A29EECCC000FB652A /* AlertManager.swift in Sources */,
+				CEFF441E29F042A600FB652A /* Validator.swift in Sources */,
 				CEFF43E129ED8F9300FB652A /* AppDelegate.swift in Sources */,
 				CEFF43E329ED8F9300FB652A /* SceneDelegate.swift in Sources */,
 				CEFF440029ED979400FB652A /* WebViewController.swift in Sources */,

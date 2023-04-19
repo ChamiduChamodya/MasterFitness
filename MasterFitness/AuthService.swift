@@ -73,10 +73,19 @@ class AuthService {
         }
     }
 
-    public func forgotPassword(with email: String, completion: @escaping (Error?)->Void){
+    public func forgotPassword(with email: String, completion: @escaping (Error?)->Void) {
         Auth.auth().sendPasswordReset(withEmail: email) { error in
-            completion(error)
+            if let error = error {
+                completion(error)
+                return
+            } else {
+                completion(nil)
+            }
         }
+        
+//        Auth.auth().sendPasswordReset(withEmail: email) { error in
+//            completion(error)
+//        }
     }
 
     public func fetchUser(completion: @escaping(User?, Error?) -> Void){

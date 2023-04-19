@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import FirebaseAuth
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
@@ -13,17 +14,42 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
 
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
-
-        guard let _ = (scene as? UIWindowScene) else { return }
-        
+        self.setupWindow(with: scene)
+        self.checkAuthentication()
+    }
+    
+    private func setupWindow(with scene: UIScene) {
         guard let scene = scene as? UIWindowScene else { return }
         let myWindow = UIWindow(windowScene: scene)
-        let view = UINavigationController(rootViewController: LoginViewController())
-        myWindow.rootViewController = view
         self.window = myWindow
-        myWindow.makeKeyAndVisible()
+        self.window?.makeKeyAndVisible()
     }
 
+    public func  checkAuthentication(){
+        if Auth.auth().currentUser == nil {
+            self.goToController(with: LoginViewController())
+        } else {
+            self.goToController(with: HomeViewController())
+        }
+    }
+
+    private func goToController(with viewController: UIViewController){
+        DispatchQueue.main.async { [weak self] in
+            UIView.animate(withDuration: 0.25) {
+                self?.window?.layer.opacity = 0
+            } completion: { [weak self] _ in
+
+                let view = UINavigationController(rootViewController: viewController)
+                self?.window?.rootViewController = view
+
+                UIView.animate(withDuration: 0.25) { [weak self] in
+                    self?.window?.layer.opacity = 1
+                }
+
+            }
+        }
+    }
+    
     func sceneDidDisconnect(_ scene: UIScene) {
     }
 

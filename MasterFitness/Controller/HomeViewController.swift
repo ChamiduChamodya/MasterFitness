@@ -15,7 +15,7 @@ class HomeViewController: UIViewController {
         label.textAlignment = .center
         label.font = .systemFont(ofSize: 24, weight: .bold)
         label.text = "Loading..."
-        label.numberOfLines = 2
+        label.numberOfLines = 3
         return label
     }()
 
@@ -24,6 +24,19 @@ class HomeViewController: UIViewController {
         self.view.backgroundColor = .black
 
         setupUI()
+        
+        AuthService.shared.fetchUser { [weak self] user, error in
+            guard let self = self else {return}
+
+            if let error = error {
+                AlertManager.showFetchinguserErrorAlert(on: self, with: error)
+                return
+            }
+
+            if let user = user {
+                self.label.text = "\(user.username)\n\(user.email)\n\(user.isOnBoardingDone)"
+            }
+        }
     }
 
     private func setupUI(){
@@ -40,5 +53,17 @@ class HomeViewController: UIViewController {
 
             }
 
-    @objc private func didTapLogOut(){}
+    @objc private func didTapLogOut(){
+        AuthService.shared.signOut { [weak self] error in
+            guard let self = self else { return  }
+            if let error = error {
+                AlertManager.showLogOutErrorAlert(on: self, with: error)
+                return
+            }
+
+            if let sceneDelegate = self.view.window?.windowScene?.delegate as? SceneDelegate {
+                sceneDelegate.checkAuthentication()
+            }
+        }
+    }
 }
