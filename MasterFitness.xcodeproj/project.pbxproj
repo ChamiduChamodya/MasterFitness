@@ -30,6 +30,8 @@
 		CEFF441A29EEE21500FB652A /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEFF441929EEE21500FB652A /* User.swift */; };
 		CEFF441C29EEE23A00FB652A /* LoginUserRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEFF441B29EEE23A00FB652A /* LoginUserRequest.swift */; };
 		CEFF441E29F042A600FB652A /* Validator.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEFF441D29F042A600FB652A /* Validator.swift */; };
+		CEFF442029F8233000FB652A /* Workout.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEFF441F29F8233000FB652A /* Workout.swift */; };
+		CEFF442229F8235200FB652A /* WorkoutCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEFF442129F8235200FB652A /* WorkoutCategory.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -55,6 +57,8 @@
 		CEFF441929EEE21500FB652A /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		CEFF441B29EEE23A00FB652A /* LoginUserRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginUserRequest.swift; sourceTree = "<group>"; };
 		CEFF441D29F042A600FB652A /* Validator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Validator.swift; sourceTree = "<group>"; };
+		CEFF441F29F8233000FB652A /* Workout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Workout.swift; sourceTree = "<group>"; };
+		CEFF442129F8235200FB652A /* WorkoutCategory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutCategory.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -143,6 +147,8 @@
 				CEFF441729EEDFB700FB652A /* RegisterUserRequest.swift */,
 				CEFF441929EEE21500FB652A /* User.swift */,
 				CEFF441B29EEE23A00FB652A /* LoginUserRequest.swift */,
+				CEFF441F29F8233000FB652A /* Workout.swift */,
+				CEFF442129F8235200FB652A /* WorkoutCategory.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -231,11 +237,13 @@
 				CEFF441C29EEE23A00FB652A /* LoginUserRequest.swift in Sources */,
 				CEFF43FA29ED973300FB652A /* HomeViewController.swift in Sources */,
 				CEFF43FE29ED977D00FB652A /* RegisterViewController.swift in Sources */,
+				CEFF442029F8233000FB652A /* Workout.swift in Sources */,
 				CEFF43F829ED971D00FB652A /* ForgotPassViewController.swift in Sources */,
 				CEFF440629ED992C00FB652A /* CustomButton.swift in Sources */,
 				CEFF441529EEDDD300FB652A /* AuthService.swift in Sources */,
 				CEFF440429ED98FB00FB652A /* AuthHeaderView.swift in Sources */,
 				CEFF441A29EEE21500FB652A /* User.swift in Sources */,
+				CEFF442229F8235200FB652A /* WorkoutCategory.swift in Sources */,
 				CEFF43F629ED947F00FB652A /* ViewController.swift in Sources */,
 				CEFF440A29EECCC000FB652A /* AlertManager.swift in Sources */,
 				CEFF441E29F042A600FB652A /* Validator.swift in Sources */,

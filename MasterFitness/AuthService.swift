@@ -111,4 +111,54 @@ class AuthService {
             }
     }
     
+    public func fetchWokoutsBegginer(completion: @escaping(Workout?, Error?) -> Void){
+        guard (Auth.auth().currentUser?.uid) != nil else { return }
+
+        let db = Firestore.firestore()
+
+        db.collection("workouts")
+            .document("beginner")
+            .getDocument { snapshot, error in
+                if let error = error {
+                    completion(nil, error)
+                    return
+                }
+                if let snapshot = snapshot,
+                   let SnapshotData = snapshot.data(),
+                   let abs = SnapshotData["abs"],
+                   let arm = SnapshotData["arm"],
+                   let chest = SnapshotData["chest"],
+                   let leg = SnapshotData["leg"],
+                   let shoulderAndback = SnapshotData["shoulder&back"] {
+                    let workout = Workout(abs: abs, arm: arm, chest: chest, leg: leg, shoulderandBack: shoulderAndback)
+                    completion(workout, nil)
+                }
+            }
+    }
+    
+    public func fetchWokoutsIntermediate(completion: @escaping(Workout?, Error?) -> Void){
+        guard (Auth.auth().currentUser?.uid) != nil else { return }
+
+        let db = Firestore.firestore()
+
+        db.collection("workouts")
+            .document("beginner")
+            .getDocument { snapshot, error in
+                if let error = error {
+                    completion(nil, error)
+                    return
+                }
+                if let snapshot = snapshot,
+                   let SnapshotData = snapshot.data(),
+                   let abs = SnapshotData["abs"],
+                   let arm = SnapshotData["arm"],
+                   let chest = SnapshotData["chest"],
+                   let leg = SnapshotData["leg"],
+                   let shoulderAndback = SnapshotData["shoulder&back"] {
+                    let workout = Workout(abs: abs, arm: arm, chest: chest, leg: leg, shoulderandBack: shoulderAndback)
+                    completion(workout, nil)
+                }
+            }
+    }
+    
 }
