@@ -23,50 +23,45 @@ class HomeViewController: UIViewController {
         return stackView
     }()
 
-//    private let label :  UILabel = {
-//        let label = UILabel()
-//        label.textColor = .white
-//        label.textAlignment = .center
-//        label.font = .systemFont(ofSize: 24, weight: .bold)
-//        label.text = "Loading..."
-//        label.translatesAutoresizingMaskIntoConstraints = false
-//        label.numberOfLines = 3
-//        return label
-//    }()
+    private let welcomeLabel :  UILabel = {
+        let label = UILabel()
+        label.textColor = .white
+        label.font = .systemFont(ofSize: 18, weight: .bold)
+        label.translatesAutoresizingMaskIntoConstraints = false
+        return label
+    }()
 
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = .black
 
-        setupUI()
+        setupLogoutUI()
         setupScrollView()
+        setupWelcomeLabel()
         setupCards()
         
-//        AuthService.shared.fetchUser { [weak self] user, error in
-//            guard let self = self else {return}
-//
-//            if let error = error {
-//                AlertManager.showFetchinguserErrorAlert(on: self, with: error)
-//                return
-//            }
-//
-//            if let user = user {
-//                self.label.text = "\(user.username)\n\(user.email)\n\(user.isOnBoardingDone)"
-//            }
-//        }
+        AuthService.shared.fetchUser { [weak self] user, error in
+            guard let self = self else {return}
+
+            if let error = error {
+                AlertManager.showFetchinguserErrorAlert(on: self, with: error)
+                return
+            }
+
+            if let user = user {
+                self.welcomeLabel.text = "Welcome \(user.username)"
+            }
+        }
     }
 
-    private func setupUI(){
+    private func setupLogoutUI(){
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Logout", style: .plain, target: self, action: #selector(didTapLogOut))
-
-//                self.view.addSubview(label)
-//
-//                NSLayoutConstraint.activate([
-//                    self.label.centerXAnchor.constraint(equalTo: self.view.centerXAnchor),
-//                    self.label.centerYAnchor.constraint(equalTo: self.view.centerYAnchor)
-//                ])
-
-            }
+    }
+    
+    private func setupWelcomeLabel() {
+        self.navigationItem.leftBarButtonItem = UIBarButtonItem(customView: welcomeLabel)
+        welcomeLabel.text = "Loading.."
+    }
 
     private func setupScrollView() {
         view.addSubview(scrollView)
