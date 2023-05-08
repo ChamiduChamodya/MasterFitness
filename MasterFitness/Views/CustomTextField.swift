@@ -18,7 +18,7 @@ class CustomTextField: UITextField {
 
     private let authFieldType: CustomTextFieldType
 
-    init(authFieldType: CustomTextFieldType) {
+    init(authFieldType: CustomTextFieldType, placeholder: String) {
         self.authFieldType = authFieldType
         super.init(frame: .zero)
 
@@ -54,7 +54,7 @@ class CustomTextField: UITextField {
             self.textContentType = .oneTimeCode
             self.isSecureTextEntry = true
         case .text:
-            self.placeholder = "Text"
+            self.placeholder = placeholder.isEmpty ? "Text" : placeholder
         }
     }
 

@@ -11,11 +11,11 @@ class RegisterViewController: UIViewController {
 
     private let headerView = AuthHeaderView(title: "Sign Up", subTitle: "Create Your Account!")
 
-    private let usernameTextField = CustomTextField(authFieldType: .username)
-    private let emailTextField = CustomTextField(authFieldType: .email)
-    private let passwordTextField = CustomTextField(authFieldType: .password)
+    private let usernameTextField = CustomTextField(authFieldType: .username, placeholder: "")
+    private let emailTextField = CustomTextField(authFieldType: .email, placeholder: "")
+    private let passwordTextField = CustomTextField(authFieldType: .password, placeholder: "")
 
-    private let signUpButton = CustomButton(title: "Sign Up", hasBackground: true ,fontSize: .big)
+    private let signUpButton = CustomButton(title: "Confirm and Proceed", hasBackground: true ,fontSize: .big)
     private let signInButton = CustomButton(title: "Already Have an Account? Sign In" ,fontSize: .med)
 
     private let termsTextView: UITextView = {
@@ -51,6 +51,7 @@ class RegisterViewController: UIViewController {
     }
 
     @objc func didTapSignUp(){
+        
         let registerUserRequest = RegisterUserRequest(
                     username: self.usernameTextField.text ?? "",
                     email: self.emailTextField.text ?? "",
@@ -71,25 +72,37 @@ class RegisterViewController: UIViewController {
                     AlertManager.showInvalidPasswordAlert(on: self)
                     return
                 }
+        
+        let values = [
+            ["username": registerUserRequest.username],
+            ["email": registerUserRequest.email],
+            ["password": registerUserRequest.password],
+        ]
+        
+        let data = ["data": values]
+        
+        let vc = UserdataViewController()
+        vc.data = data
+        self.navigationController?.pushViewController(vc, animated: true)
 
-                AuthService.shared.registerUser(with: registerUserRequest) { [weak self] wasRegistered, error in
-
-                    guard let self = self else { return }
-
-                    if let error = error {
-                        AlertManager.showRegistrationErrorAlert(on: self, with: error)
-                        return
-                    }
-
-                    if wasRegistered {
-                        if let sceneDelegate = self.view.window?.windowScene?.delegate as? SceneDelegate {
-                            sceneDelegate.checkAuthentication()
-                        }
-                    } else {
-                        AlertManager.showRegistrationErrorAlert(on: self)
-                    }
-
-                }
+//                AuthService.shared.registerUser(with: registerUserRequest) { [weak self] wasRegistered, error in
+//
+//                    guard let self = self else { return }
+//
+//                    if let error = error {
+//                        AlertManager.showRegistrationErrorAlert(on: self, with: error)
+//                        return
+//                    }
+//
+//                    if wasRegistered {
+//                        if let sceneDelegate = self.view.window?.windowScene?.delegate as? SceneDelegate {
+//                            sceneDelegate.checkAuthentication()
+//                        }
+//                    } else {
+//                        AlertManager.showRegistrationErrorAlert(on: self)
+//                    }
+//
+//                }
     }
 
     @objc private func didTapSignIn(){

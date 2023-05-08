@@ -11,7 +11,7 @@ class ForgotPassViewController: UIViewController {
     
     private let headerView = AuthHeaderView(title: "Forgot Password", subTitle: "Reset Your Password!")
     
-    private let emailTextField = CustomTextField(authFieldType: .email)
+    private let emailTextField = CustomTextField(authFieldType: .email, placeholder: "")
     
     private let resetPasswordButton = CustomButton(title: "Change Password",hasBackground: true, fontSize: .big)
 

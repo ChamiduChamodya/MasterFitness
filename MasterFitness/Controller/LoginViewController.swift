@@ -11,8 +11,8 @@ class LoginViewController: UIViewController {
 
     private let headerView = AuthHeaderView(title: "Sign In", subTitle: "Sign into Your Account!")
 
-    private let emailTextField = CustomTextField(authFieldType: .email)
-    private let passwordTextField = CustomTextField(authFieldType: .password)
+    private let emailTextField = CustomTextField(authFieldType: .email, placeholder: "")
+    private let passwordTextField = CustomTextField(authFieldType: .password, placeholder: "")
 
     private let signInButton = CustomButton(title: "Sign In", hasBackground: true ,fontSize: .big)
     private let newUserButton = CustomButton(title: "New User? Create Account.", fontSize: .med)

@@ -32,6 +32,8 @@
 		CEFF441E29F042A600FB652A /* Validator.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEFF441D29F042A600FB652A /* Validator.swift */; };
 		CEFF442029F8233000FB652A /* Workout.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEFF441F29F8233000FB652A /* Workout.swift */; };
 		CEFF442229F8235200FB652A /* WorkoutCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEFF442129F8235200FB652A /* WorkoutCategory.swift */; };
+		CEFF44242A0939ED00FB652A /* UserdataViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEFF44232A0939ED00FB652A /* UserdataViewController.swift */; };
+		CEFF44262A0958FA00FB652A /* RegisterUserDetailRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEFF44252A0958FA00FB652A /* RegisterUserDetailRequest.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -59,6 +61,8 @@
 		CEFF441D29F042A600FB652A /* Validator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Validator.swift; sourceTree = "<group>"; };
 		CEFF441F29F8233000FB652A /* Workout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Workout.swift; sourceTree = "<group>"; };
 		CEFF442129F8235200FB652A /* WorkoutCategory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutCategory.swift; sourceTree = "<group>"; };
+		CEFF44232A0939ED00FB652A /* UserdataViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserdataViewController.swift; sourceTree = "<group>"; };
+		CEFF44252A0958FA00FB652A /* RegisterUserDetailRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterUserDetailRequest.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -115,6 +119,7 @@
 				CEFF43FB29ED974500FB652A /* LoginViewController.swift */,
 				CEFF43FD29ED977D00FB652A /* RegisterViewController.swift */,
 				CEFF43FF29ED979400FB652A /* WebViewController.swift */,
+				CEFF44232A0939ED00FB652A /* UserdataViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -149,6 +154,7 @@
 				CEFF441B29EEE23A00FB652A /* LoginUserRequest.swift */,
 				CEFF441F29F8233000FB652A /* Workout.swift */,
 				CEFF442129F8235200FB652A /* WorkoutCategory.swift */,
+				CEFF44252A0958FA00FB652A /* RegisterUserDetailRequest.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -235,6 +241,7 @@
 				CEFF43FC29ED974500FB652A /* LoginViewController.swift in Sources */,
 				CEFF440829ED995900FB652A /* CustomTextField.swift in Sources */,
 				CEFF441C29EEE23A00FB652A /* LoginUserRequest.swift in Sources */,
+				CEFF44242A0939ED00FB652A /* UserdataViewController.swift in Sources */,
 				CEFF43FA29ED973300FB652A /* HomeViewController.swift in Sources */,
 				CEFF43FE29ED977D00FB652A /* RegisterViewController.swift in Sources */,
 				CEFF442029F8233000FB652A /* Workout.swift in Sources */,
@@ -244,6 +251,7 @@
 				CEFF440429ED98FB00FB652A /* AuthHeaderView.swift in Sources */,
 				CEFF441A29EEE21500FB652A /* User.swift in Sources */,
 				CEFF442229F8235200FB652A /* WorkoutCategory.swift in Sources */,
+				CEFF44262A0958FA00FB652A /* RegisterUserDetailRequest.swift in Sources */,
 				CEFF43F629ED947F00FB652A /* ViewController.swift in Sources */,
 				CEFF440A29EECCC000FB652A /* AlertManager.swift in Sources */,
 				CEFF441E29F042A600FB652A /* Validator.swift in Sources */,
