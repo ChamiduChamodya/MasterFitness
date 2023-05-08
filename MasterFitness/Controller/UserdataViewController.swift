@@ -68,8 +68,6 @@ class UserdataViewController: UIViewController {
             fitnessGoal: self.goal.text ?? "",
             age: self.age.text ?? ""
             )
-        
-//        print(registerUserRequest)
 
                 if !Validator.isValidUsername(for: registerUserRequest.username) {
                     AlertManager.showInvalidUsernameAlert(on: self)
@@ -86,24 +84,24 @@ class UserdataViewController: UIViewController {
                     return
                 }
 
-//                AuthService.shared.registerUser(with: registerUserRequest) { [weak self] wasRegistered, error in
-//
-//                    guard let self = self else { return }
-//
-//                    if let error = error {
-//                        AlertManager.showRegistrationErrorAlert(on: self, with: error)
-//                        return
-//                    }
-//
-//                    if wasRegistered {
-//                        if let sceneDelegate = self.view.window?.windowScene?.delegate as? SceneDelegate {
-//                            sceneDelegate.checkAuthentication()
-//                        }
-//                    } else {
-//                        AlertManager.showRegistrationErrorAlert(on: self)
-//                    }
-//
-//                }
+                AuthService.shared.registerUser(with: registerUserRequest) { [weak self] wasRegistered, error in
+
+                    guard let self = self else { return }
+
+                    if let error = error {
+                        AlertManager.showRegistrationErrorAlert(on: self, with: error)
+                        return
+                    }
+
+                    if wasRegistered {
+                        if let sceneDelegate = self.view.window?.windowScene?.delegate as? SceneDelegate {
+                            sceneDelegate.checkAuthentication()
+                        }
+                    } else {
+                        AlertManager.showRegistrationErrorAlert(on: self)
+                    }
+
+                }
     }
     
     private func setupUI(){
