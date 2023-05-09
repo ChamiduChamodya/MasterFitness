@@ -15,4 +15,5 @@ struct RegisterUserDetailRequest {
     let weight: String
     let fitnessGoal: String
     let age: String
+    let bmi: String
 }

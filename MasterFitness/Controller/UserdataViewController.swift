@@ -11,15 +11,23 @@ class UserdataViewController: UIViewController {
     
     var data: [String: Any] = [:]
     
+    private let bmiLabel: UILabel = {
+        let label = UILabel()
+        label.textAlignment = .center
+        label.textColor = .white
+        label.font = UIFont.systemFont(ofSize: 20)
+        return label
+    }()
+    
     private var username: String = ""
     private var email: String = ""
     private var password: String = ""
     
     private let headerView = AuthHeaderView(title: "User Details", subTitle: "Please Input Your Details")
 
-    private let height = CustomTextField(authFieldType: .text, placeholder: "Height")
-    private let weight = CustomTextField(authFieldType: .text, placeholder: "Weight")
-    private let goal = CustomTextField(authFieldType: .text, placeholder: "Weight Goal")
+    private let height = CustomTextField(authFieldType: .text, placeholder: "Height in Cm")
+    private let weight = CustomTextField(authFieldType: .text, placeholder: "Weight in Kg")
+    private let goal = CustomTextField(authFieldType: .text, placeholder: "Weight Goal in Kg")
     private let age = CustomTextField(authFieldType: .text, placeholder: "Age")
 
     private let signUpButton = CustomButton(title: "Sign Up", hasBackground: true ,fontSize: .big)
@@ -57,7 +65,28 @@ class UserdataViewController: UIViewController {
 
     }
     
+    private func calculateBMI() -> Double? {
+        guard let heightText = height.text, let heightValue = Double(heightText),
+              let weightText = weight.text, let weightValue = Double(weightText) else {
+            return nil
+        }
+        
+        // Convert height from cm to meters
+        let heightInMeters = heightValue / 100
+        
+        // Calculate BMI
+        let bmi = weightValue / (heightInMeters * heightInMeters)
+        
+        return bmi
+    }
+    
     @objc func didTapSignUp(){
+        
+        // Calculate BMI
+        guard let bmi = calculateBMI() else {
+            AlertManager.showInvalidInputNumberAlert(on: self)
+            return
+        }
         
         let registerUserRequest = RegisterUserDetailRequest (
             username: self.username,
@@ -66,7 +95,8 @@ class UserdataViewController: UIViewController {
             height: self.height.text ?? "",
             weight: self.weight.text ?? "",
             fitnessGoal: self.goal.text ?? "",
-            age: self.age.text ?? ""
+            age: self.age.text ?? "",
+            bmi: String(bmi)
             )
 
                 if !Validator.isValidUsername(for: registerUserRequest.username) {
@@ -128,7 +158,9 @@ class UserdataViewController: UIViewController {
         self.view.addSubview(goal)
         self.view.addSubview(age)
         self.view.addSubview(signUpButton)
-
+        self.view.addSubview(bmiLabel)
+        
+        self.bmiLabel.translatesAutoresizingMaskIntoConstraints = false
         self.headerView.translatesAutoresizingMaskIntoConstraints = false
         self.height.translatesAutoresizingMaskIntoConstraints = false
         self.weight.translatesAutoresizingMaskIntoConstraints = false
@@ -161,12 +193,30 @@ class UserdataViewController: UIViewController {
             self.age.centerXAnchor.constraint(equalTo: headerView.centerXAnchor),
             self.age.heightAnchor.constraint(equalToConstant: 55),
             self.age.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.85),
+            
+            self.bmiLabel.topAnchor.constraint(equalTo: age.bottomAnchor, constant: 22),
+            self.bmiLabel.centerXAnchor.constraint(equalTo: headerView.centerXAnchor),
+            self.bmiLabel.heightAnchor.constraint(equalToConstant: 55),
+            self.bmiLabel.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.85),
 
-            self.signUpButton.topAnchor.constraint(equalTo: age.bottomAnchor, constant: 22),
+            self.signUpButton.topAnchor.constraint(equalTo: bmiLabel.bottomAnchor, constant: 10),
             self.signUpButton.centerXAnchor.constraint(equalTo: headerView.centerXAnchor),
             self.signUpButton.heightAnchor.constraint(equalToConstant: 55),
             self.signUpButton.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.85),
         ])
+        
+        height.addTarget(self, action: #selector(textFieldDidChange(_:)), for: .editingChanged)
+        weight.addTarget(self, action: #selector(textFieldDidChange(_:)), for: .editingChanged)
+    }
+    
+    @objc private func textFieldDidChange(_ textField: UITextField) {
+        // Calculate and update BMI label
+        guard let bmi = calculateBMI() else {
+            bmiLabel.text = ""
+            return
+        }
+        
+        bmiLabel.text = String(format: "BMI: %.2f", bmi)
     }
 
 }

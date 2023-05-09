@@ -28,6 +28,7 @@ class AuthService {
            let weight = userRequest.weight
            let goal = userRequest.fitnessGoal
            let age = userRequest.age
+           let bmi = userRequest.bmi
 
            Auth.auth().createUser(withEmail: email, password: password) { Result, error in
                if let error = error {
@@ -50,7 +51,8 @@ class AuthService {
                        "height": height,
                        "weight": weight,
                        "fitnessGoal": goal,
-                       "age": age
+                       "age": age,
+                       "bmi": bmi
                    ]) { error in
                        if let error = error {
                            completion(false, error)
