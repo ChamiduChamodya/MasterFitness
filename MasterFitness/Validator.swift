@@ -30,4 +30,18 @@ class Validator {
         let passwordPred = NSPredicate(format: "SELF MATCHES %@", passwordRegex)
         return passwordPred.evaluate(with: password)
     }
+    
+    static func isValidInput(for text: String) -> Bool {
+        let input = text.trimmingCharacters(in: .whitespacesAndNewlines)
+        let res = input.isEmpty
+        return res
+    }
+    
+    static func isValidNumber(for input: String) -> Bool {
+        let text = input.trimmingCharacters(in: .whitespacesAndNewlines)
+        let textRegex = "^\\d*\\.?\\d+$"
+        let textPred = NSPredicate(format: "SELF MATCHES %@", textRegex)
+//        print("Input: \(input) Evaluation: \(textPred.evaluate(with: text))")
+        return textPred.evaluate(with: text)
+    }
 }

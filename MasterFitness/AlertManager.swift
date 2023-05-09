@@ -30,6 +30,14 @@ extension AlertManager {
     public static func showInvalidUsernameAlert(on vc : UIViewController){
         self.showBasicalert(on: vc, title: "Invalid Username", message: "Please Enter a Valid Username!")
     }
+    
+    public static func showInvalidInputAlert(on vc : UIViewController){
+        self.showBasicalert(on: vc, title: "Invalid Input", message: "Please Enter a Valid Input!")
+    }
+    
+    public static func showInvalidInputNumberAlert(on vc : UIViewController){
+        self.showBasicalert(on: vc, title: "Invalid Input", message: "Please Enter a Valid Numeric Input!")
+    }
 }
 
 // Registration Messages

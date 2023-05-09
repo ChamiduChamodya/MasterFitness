@@ -19,7 +19,7 @@ class UserdataViewController: UIViewController {
 
     private let height = CustomTextField(authFieldType: .text, placeholder: "Height")
     private let weight = CustomTextField(authFieldType: .text, placeholder: "Weight")
-    private let goal = CustomTextField(authFieldType: .text, placeholder: "Goal")
+    private let goal = CustomTextField(authFieldType: .text, placeholder: "Weight Goal")
     private let age = CustomTextField(authFieldType: .text, placeholder: "Age")
 
     private let signUpButton = CustomButton(title: "Sign Up", hasBackground: true ,fontSize: .big)
@@ -81,6 +81,21 @@ class UserdataViewController: UIViewController {
 
                 if !Validator.isValidPassword(for: registerUserRequest.password) {
                     AlertManager.showInvalidPasswordAlert(on: self)
+                    return
+                }
+        
+                if !Validator.isValidNumber(for: registerUserRequest.height) {
+                    AlertManager.showInvalidInputNumberAlert(on: self)
+                    return
+                }
+        
+                if !Validator.isValidNumber(for: registerUserRequest.weight) {
+                    AlertManager.showInvalidInputNumberAlert(on: self)
+                    return
+                }
+                
+                if !Validator.isValidNumber(for: registerUserRequest.age) {
+                    AlertManager.showInvalidInputNumberAlert(on: self)
                     return
                 }
 
