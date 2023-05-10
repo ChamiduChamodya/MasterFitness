@@ -16,7 +16,7 @@ class AuthService {
 
     /// Register the User
        /// - Parameters:
-       ///   - userRequest: The User Info (email, password, username)
+       ///   - userRequest: The User Info (email, password, username,height,weight,fitnessGoal,age,bmi)
        ///   - completion: A completion with two values...
        ///   - Bool: wasRegistered - Determins if the user was registered and saved in DB
        ///   - Error?: An Optional Error if Firebase throws one
@@ -29,6 +29,10 @@ class AuthService {
            let goal = userRequest.fitnessGoal
            let age = userRequest.age
            let bmi = userRequest.bmi
+           
+           let workoutPlan = getWorkOutPlan(weight: weight)
+           
+           print("workout plan \(workoutPlan)")
 
            Auth.auth().createUser(withEmail: email, password: password) { Result, error in
                if let error = error {
@@ -47,12 +51,12 @@ class AuthService {
                    .setData([
                        "username": username,
                        "email": email,
-                       "isOnBoardingDone": false,
                        "height": height,
                        "weight": weight,
                        "fitnessGoal": goal,
                        "age": age,
-                       "bmi": bmi
+                       "bmi": bmi,
+                       "userWorkoutPlan": workoutPlan
                    ]) { error in
                        if let error = error {
                            completion(false, error)
@@ -113,9 +117,8 @@ class AuthService {
                 if let snapshot = snapshot,
                    let SnapshotData = snapshot.data(),
                    let username = SnapshotData["username"] as? String,
-                   let email = SnapshotData["email"] as? String,
-                   let isOnBoardingDone = SnapshotData["isOnBoardingDone"] as? Bool {
-                    let user = User(username: username, email: email, userUID: userUID, isOnBoardingDone: isOnBoardingDone)
+                   let email = SnapshotData["email"] as? String {
+                    let user = User(username: username, email: email, userUID: userUID)
                     completion(user, nil)
                 }
             }
@@ -169,6 +172,541 @@ class AuthService {
                     completion(workout, nil)
                 }
             }
+    }
+    
+    @objc private func getWorkOutPlan(weight: String) -> [String : [Any]] {
+        
+        let weightValue: Int = Int(weight) ?? 0
+        
+        if weightValue <= 60 {
+            return [
+                "abs": [
+                    [
+                    "exercise": "Bicycle Crunches",
+                    "reps": "12",
+                    "time": "30"
+                    ],
+                    [
+                    "exercise": "Plank",
+                    "reps": "2",
+                    "time": "30"
+                    ],
+                    [
+                    "exercise": "Mountain Climbers",
+                    "reps": "12",
+                    "time": "30"
+                    ]
+                ],
+                "chest": [
+                    [
+                    "exercise": "Push-Ups",
+                    "reps": "12",
+                    "time": "30"
+                    ],
+                    [
+                    "exercise": "Dumbbell Bench Press",
+                    "reps": "12",
+                    "time": "30"
+                    ],
+                    [
+                    "exercise": "Chest Dips",
+                    "reps": "12",
+                    "time": "30"
+                    ]
+                ],
+                "arm": [
+                    [
+                    "exercise": "Bicep Curls",
+                    "reps": "12",
+                    "time": "30"
+                    ],
+                    [
+                    "exercise": "Tricep Dips",
+                    "reps": "12",
+                    "time": "30"
+                    ],
+                    [
+                    "exercise": "Hammer Curls",
+                    "reps": "12",
+                    "time": "30"
+                    ]
+                ],
+                "leg": [
+                    [
+                    "exercise": "Squats",
+                    "reps": "12",
+                    "time": "30"
+                    ],
+                    [
+                    "exercise": "Lunges",
+                    "reps": "12",
+                    "time": "30"
+                    ],
+                    [
+                    "exercise": "Calf Raises",
+                    "reps": "12",
+                    "time": "30"
+                    ]
+                ],
+                "shoulder&back": [
+                    [
+                    "exercise": "Shoulder Press",
+                    "reps": "12",
+                    "time": "30"
+                    ],
+                    [
+                    "exercise": "Bent-Over Rows",
+                    "reps": "12",
+                    "time": "30"
+                    ],
+                    [
+                    "exercise": "Lateral Raises",
+                    "reps": "12",
+                    "time": "30"
+                    ]
+                ]
+            ]
+        }else if weightValue > 60 && weightValue <= 70 {
+            return [
+                "abs": [
+                    [
+                    "exercise": "Russian Twists",
+                    "reps": "12",
+                    "time": "30"
+                    ],
+                    [
+                    "exercise": "Plank with leg Raises",
+                    "reps": "2",
+                    "time": "30"
+                    ],
+                    [
+                    "exercise": "Hanging Leg Raises",
+                    "reps": "12",
+                    "time": "30"
+                    ]
+                ],
+                "chest": [
+                    [
+                    "exercise": "Decline Push-Ups",
+                    "reps": "12",
+                    "time": "30"
+                    ],
+                    [
+                    "exercise": "Barbell Bench Press",
+                    "reps": "12",
+                    "time": "30"
+                    ],
+                    [
+                    "exercise": "Chest Flyes",
+                    "reps": "12",
+                    "time": "30"
+                    ]
+                ],
+                "arm": [
+                    [
+                    "exercise": "Barbell Bicep Curls",
+                    "reps": "12",
+                    "time": "30"
+                    ],
+                    [
+                    "exercise": "Tricep Pushdowns",
+                    "reps": "12",
+                    "time": "30"
+                    ],
+                    [
+                    "exercise": "Skull Crushes",
+                    "reps": "12",
+                    "time": "30"
+                    ]
+                ],
+                "leg": [
+                    [
+                    "exercise": "Barbell Squats",
+                    "reps": "12",
+                    "time": "30"
+                    ],
+                    [
+                    "exercise": "Romanian Deadlifts",
+                    "reps": "12",
+                    "time": "30"
+                    ],
+                    [
+                    "exercise": "Calf Raises",
+                    "reps": "15",
+                    "time": "30"
+                    ]
+                ],
+                "shoulder&back": [
+                    [
+                    "exercise": "Shoulder Press",
+                    "reps": "15",
+                    "time": "30"
+                    ],
+                    [
+                    "exercise": "Bent-Over Rows",
+                    "reps": "15",
+                    "time": "30"
+                    ],
+                    [
+                    "exercise": "Lateral Raises",
+                    "reps": "15",
+                    "time": "30"
+                    ]
+                ]
+            ]
+        }else if weightValue > 70 && weightValue <= 80 {
+            return [
+                "abs": [
+                    [
+                    "exercise": "Russian Twists",
+                    "reps": "15",
+                    "time": "30"
+                    ],
+                    [
+                    "exercise": "Plank with leg Raises",
+                    "reps": "5",
+                    "time": "30"
+                    ],
+                    [
+                    "exercise": "Hanging Leg Raises",
+                    "reps": "15",
+                    "time": "30"
+                    ]
+                ],
+                "chest": [
+                    [
+                    "exercise": "Decline Push-Ups",
+                    "reps": "15",
+                    "time": "30"
+                    ],
+                    [
+                    "exercise": "Barbell Bench Press",
+                    "reps": "15",
+                    "time": "30"
+                    ],
+                    [
+                    "exercise": "Chest Flyes",
+                    "reps": "15",
+                    "time": "30"
+                    ]
+                ],
+                "arm": [
+                    [
+                    "exercise": "Barbell Bicep Curls",
+                    "reps": "15",
+                    "time": "30"
+                    ],
+                    [
+                    "exercise": "Tricep Pushdowns",
+                    "reps": "15",
+                    "time": "30"
+                    ],
+                    [
+                    "exercise": "Skull Crushes",
+                    "reps": "15",
+                    "time": "30"
+                    ]
+                ],
+                "leg": [
+                    [
+                    "exercise": "Barbell Squats",
+                    "reps": "15",
+                    "time": "30"
+                    ],
+                    [
+                    "exercise": "Romanian Deadlifts",
+                    "reps": "15",
+                    "time": "30"
+                    ],
+                    [
+                    "exercise": "Calf Raises",
+                    "reps": "15",
+                    "time": "30"
+                    ]
+                ],
+                "shoulder&back": [
+                    [
+                    "exercise": "Shoulder Press",
+                    "reps": "15",
+                    "time": "30"
+                    ],
+                    [
+                    "exercise": "Bent-Over Rows",
+                    "reps": "15",
+                    "time": "30"
+                    ],
+                    [
+                    "exercise": "Lateral Raises",
+                    "reps": "15",
+                    "time": "30"
+                    ]
+                ]
+            ]
+        }else if weightValue > 80 && weightValue <= 90 {
+            return [
+                "abs": [
+                    [
+                    "exercise": "Russian Twists",
+                    "reps": "15",
+                    "time": "30"
+                    ],
+                    [
+                    "exercise": "Plank with leg Raises",
+                    "reps": "5",
+                    "time": "30"
+                    ],
+                    [
+                    "exercise": "Hanging Leg Raises",
+                    "reps": "15",
+                    "time": "30"
+                    ]
+                ],
+                "chest": [
+                    [
+                    "exercise": "Decline Push-Ups",
+                    "reps": "15",
+                    "time": "30"
+                    ],
+                    [
+                    "exercise": "Barbell Bench Press",
+                    "reps": "15",
+                    "time": "30"
+                    ],
+                    [
+                    "exercise": "Chest Flyes",
+                    "reps": "15",
+                    "time": "30"
+                    ]
+                ],
+                "arm": [
+                    [
+                    "exercise": "Barbell Bicep Curls",
+                    "reps": "15",
+                    "time": "30"
+                    ],
+                    [
+                    "exercise": "Tricep Pushdowns",
+                    "reps": "15",
+                    "time": "30"
+                    ],
+                    [
+                    "exercise": "Skull Crushes",
+                    "reps": "15",
+                    "time": "30"
+                    ]
+                ],
+                "leg": [
+                    [
+                    "exercise": "Barbell Squats",
+                    "reps": "15",
+                    "time": "30"
+                    ],
+                    [
+                    "exercise": "Romanian Deadlifts",
+                    "reps": "15",
+                    "time": "30"
+                    ],
+                    [
+                    "exercise": "Calf Raises",
+                    "reps": "15",
+                    "time": "30"
+                    ]
+                ],
+                "shoulder&back": [
+                    [
+                    "exercise": "Shoulder Press",
+                    "reps": "15",
+                    "time": "30"
+                    ],
+                    [
+                    "exercise": "Bent-Over Rows",
+                    "reps": "15",
+                    "time": "30"
+                    ],
+                    [
+                    "exercise": "Lateral Raises",
+                    "reps": "15",
+                    "time": "30"
+                    ]
+                ]
+            ]
+        }else if weightValue > 90 && weightValue <= 100 {
+            return [
+                "abs": [
+                    [
+                    "exercise": "Russian Twists",
+                    "reps": "16",
+                    "time": "30"
+                    ],
+                    [
+                    "exercise": "Plank with leg Raises",
+                    "reps": "5",
+                    "time": "30"
+                    ],
+                    [
+                    "exercise": "Hanging Leg Raises",
+                    "reps": "16",
+                    "time": "30"
+                    ]
+                ],
+                "chest": [
+                    [
+                    "exercise": "Decline Push-Ups",
+                    "reps": "16",
+                    "time": "30"
+                    ],
+                    [
+                    "exercise": "Barbell Bench Press",
+                    "reps": "16",
+                    "time": "30"
+                    ],
+                    [
+                    "exercise": "Chest Flyes",
+                    "reps": "16",
+                    "time": "30"
+                    ]
+                ],
+                "arm": [
+                    [
+                    "exercise": "Barbell Bicep Curls",
+                    "reps": "16",
+                    "time": "30"
+                    ],
+                    [
+                    "exercise": "Tricep Pushdowns",
+                    "reps": "16",
+                    "time": "30"
+                    ],
+                    [
+                    "exercise": "Skull Crushes",
+                    "reps": "16",
+                    "time": "30"
+                    ]
+                ],
+                "leg": [
+                    [
+                    "exercise": "Barbell Squats",
+                    "reps": "16",
+                    "time": "30"
+                    ],
+                    [
+                    "exercise": "Romanian Deadlifts",
+                    "reps": "16",
+                    "time": "30"
+                    ],
+                    [
+                    "exercise": "Calf Raises",
+                    "reps": "16",
+                    "time": "30"
+                    ]
+                ],
+                "shoulder&back": [
+                    [
+                    "exercise": "Shoulder Press",
+                    "reps": "16",
+                    "time": "30"
+                    ],
+                    [
+                    "exercise": "Bent-Over Rows",
+                    "reps": "16",
+                    "time": "30"
+                    ],
+                    [
+                    "exercise": "Lateral Raises",
+                    "reps": "16",
+                    "time": "30"
+                    ]
+                ]
+            ]
+        }else {
+            return [
+                "abs": [
+                    [
+                    "exercise": "Russian Twists",
+                    "reps": "16",
+                    "time": "30"
+                    ],
+                    [
+                    "exercise": "Plank with leg Raises",
+                    "reps": "5",
+                    "time": "30"
+                    ],
+                    [
+                    "exercise": "Hanging Leg Raises",
+                    "reps": "16",
+                    "time": "30"
+                    ]
+                ],
+                "chest": [
+                    [
+                    "exercise": "Decline Push-Ups",
+                    "reps": "16",
+                    "time": "30"
+                    ],
+                    [
+                    "exercise": "Barbell Bench Press",
+                    "reps": "16",
+                    "time": "30"
+                    ],
+                    [
+                    "exercise": "Chest Flyes",
+                    "reps": "16",
+                    "time": "30"
+                    ]
+                ],
+                "arm": [
+                    [
+                    "exercise": "Barbell Bicep Curls",
+                    "reps": "16",
+                    "time": "30"
+                    ],
+                    [
+                    "exercise": "Tricep Pushdowns",
+                    "reps": "16",
+                    "time": "30"
+                    ],
+                    [
+                    "exercise": "Skull Crushes",
+                    "reps": "16",
+                    "time": "30"
+                    ]
+                ],
+                "leg": [
+                    [
+                    "exercise": "Barbell Squats",
+                    "reps": "16",
+                    "time": "30"
+                    ],
+                    [
+                    "exercise": "Romanian Deadlifts",
+                    "reps": "16",
+                    "time": "30"
+                    ],
+                    [
+                    "exercise": "Calf Raises",
+                    "reps": "16",
+                    "time": "30"
+                    ]
+                ],
+                "shoulder&back": [
+                    [
+                    "exercise": "Shoulder Press",
+                    "reps": "16",
+                    "time": "30"
+                    ],
+                    [
+                    "exercise": "Bent-Over Rows",
+                    "reps": "16",
+                    "time": "30"
+                    ],
+                    [
+                    "exercise": "Lateral Raises",
+                    "reps": "16",
+                    "time": "30"
+                    ]
+                ]
+            ]
+        }
     }
     
 }

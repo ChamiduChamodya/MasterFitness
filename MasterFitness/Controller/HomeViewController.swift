@@ -47,7 +47,6 @@ class HomeViewController: UIViewController {
                 AlertManager.showFetchinguserErrorAlert(on: self, with: error)
                 return
             }
-
             if let user = user {
                 self.welcomeLabel.text = "Welcome \(user.username)"
             }
