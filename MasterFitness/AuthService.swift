@@ -117,8 +117,9 @@ class AuthService {
                 if let snapshot = snapshot,
                    let SnapshotData = snapshot.data(),
                    let username = SnapshotData["username"] as? String,
-                   let email = SnapshotData["email"] as? String {
-                    let user = User(username: username, email: email, userUID: userUID)
+                   let email = SnapshotData["email"] as? String,
+                   let userWorkoutPlan = SnapshotData["userWorkoutPlan"] as? [String : [Any]]{
+                    let user = User(username: username, email: email, userUID: userUID, userWorkoutPlan: userWorkoutPlan)
                     completion(user, nil)
                 }
             }

@@ -9,6 +9,8 @@ import UIKit
 
 class HomeViewController: UIViewController {
     
+    private var userWorkoutPlan: [String: [Any]] = [:]
+    
     private let scrollView: UIScrollView = {
         let scrollView = UIScrollView()
         scrollView.translatesAutoresizingMaskIntoConstraints = false
@@ -49,6 +51,7 @@ class HomeViewController: UIViewController {
             }
             if let user = user {
                 self.welcomeLabel.text = "Welcome \(user.username)"
+                self.userWorkoutPlan = user.userWorkoutPlan
             }
         }
     }
@@ -82,48 +85,70 @@ class HomeViewController: UIViewController {
     
     private func setupCards() {
         let cardTitles = ["MyPlan", "Beginner", "Intermediate", "Advanced"]
-        let cardOptions = [
-            ["Abs", "Chest", "Arm", "Leg", "Shoulder & Back"],
-            ["Abs", "Chest", "Arm", "Leg", "Shoulder & Back"],
-            ["Abs", "Chest", "Arm", "Leg", "Shoulder & Back"],
-            ["Abs", "Chest", "Arm", "Leg", "Shoulder & Back"]
-        ]
         
         for i in 0..<cardTitles.count {
-            let cardView = createCardView(title: cardTitles[i], options: cardOptions[i])
+            let cardView = createCardView(title: cardTitles[i])
             cardStackView.addArrangedSubview(cardView)
+            
+            if i < cardTitles.count - 1 {
+                let spacingView = UIView()
+                spacingView.translatesAutoresizingMaskIntoConstraints = false
+                spacingView.heightAnchor.constraint(equalToConstant: 30).isActive = true
+                cardStackView.addArrangedSubview(spacingView)
+            }
         }
     }
     
-    private func createCardView(title: String, options: [String]) -> UIView {
+    private func createCardView(title: String) -> UIView {
         let cardView = UIView()
-        cardView.backgroundColor = .white
-        cardView.layer.cornerRadius = 10
+        cardView.layer.cornerRadius = 20
         cardView.translatesAutoresizingMaskIntoConstraints = false
         
+        
+        let backgroundImage: UIImage?
+        if title == "MyPlan" {
+            backgroundImage = UIImage(named: "01")
+        } else if title == "Beginner" {
+            backgroundImage = UIImage(named: "04")
+        } else if title == "Intermediate" {
+            backgroundImage = UIImage(named: "03")
+        } else if title == "Advanced" {
+            backgroundImage = UIImage(named: "02")
+        } else {
+            backgroundImage = nil
+        }
+        
+        if let backgroundImage = backgroundImage {
+            let backgroundImageView = UIImageView(image: backgroundImage)
+            backgroundImageView.contentMode = .scaleAspectFill
+            backgroundImageView.alpha = 0.5
+            backgroundImageView.translatesAutoresizingMaskIntoConstraints = false
+            cardView.addSubview(backgroundImageView)
+        
+            NSLayoutConstraint.activate([
+                backgroundImageView.leadingAnchor.constraint(equalTo: cardView.leadingAnchor),
+                backgroundImageView.trailingAnchor.constraint(equalTo: cardView.trailingAnchor),
+                backgroundImageView.topAnchor.constraint(equalTo: cardView.topAnchor),
+                backgroundImageView.bottomAnchor.constraint(equalTo: cardView.bottomAnchor)
+            ])
+        }
+               
         let titleLabel = UILabel()
         titleLabel.text = title
         titleLabel.textColor = .black
-        titleLabel.font = .systemFont(ofSize: 20, weight: .bold)
+        titleLabel.font = .systemFont(ofSize: 24, weight: .bold)
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
         cardView.addSubview(titleLabel)
         
         let optionsStackView = UIStackView()
         optionsStackView.axis = .vertical
-        optionsStackView.spacing = 8
+        optionsStackView.spacing = 15
         optionsStackView.translatesAutoresizingMaskIntoConstraints = false
         cardView.addSubview(optionsStackView)
-        
-        for option in options {
-            let optionLabel = UILabel()
-            optionLabel.text = option
-            optionLabel.textColor = .black
-            optionLabel.font = .systemFont(ofSize: 16)
-            optionLabel.translatesAutoresizingMaskIntoConstraints = false
-            optionsStackView.addArrangedSubview(optionLabel)
-        }
-        
+
         NSLayoutConstraint.activate([
+            cardView.heightAnchor.constraint(equalToConstant: 200),
+            
             titleLabel.topAnchor.constraint(equalTo: cardView.topAnchor, constant: 16),
             titleLabel.leadingAnchor.constraint(equalTo: cardView.leadingAnchor, constant: 16),
             
