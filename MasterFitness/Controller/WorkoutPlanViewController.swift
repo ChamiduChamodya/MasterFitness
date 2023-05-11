@@ -91,24 +91,32 @@ extension WorkoutPlanViewController: UITableViewDelegate, UITableViewDataSource 
         print("exercises \(String(describing: exercises))")
         print("exercise \(String(describing: exercise))")
         
-//        if let exercise = exercise {
-//            let exerciseName = exercise["exercise"] as! String
-//            let reps = exercise["reps"] as! Int
-//            let time = exercise["time"] as! Int
-//            cell.textLabel?.text = "\(exerciseName) - Reps: \(reps), Time: \(time)s"
-//        }
+        print("exerciseName \(String(describing: exercise!["exercise"] as? String))")
+        print("reps \(String(describing: exercise!["reps"] as? String))")
+        print("time \(String(describing: exercise!["time"] as? String))")
         
         if let exercise = exercise,
            let exerciseName = exercise["exercise"] as? String,
-           let reps = exercise["reps"] as? Int,
-           let time = exercise["time"] as? Int {
-            print("exerciseName \(exerciseName)")
-            print("reps \(reps)")
-            print("time \(time)")
+           let repsString = exercise["reps"] as? String,
+           let reps = Int(repsString),
+           let timeString = exercise["time"] as? String,
+           let time = Int(timeString) {
             cell.textLabel?.text = "\(exerciseName) - Reps: \(reps), Time: \(time)s"
         }else {
             print("Exercise data is invalid or missing.")
         }
+        
+//        if let exercise = exercise,
+//           let exerciseName = exercise["exercise"] as? String,
+//           let reps = exercise["reps"] as? Int,
+//           let time = exercise["time"] as? Int {
+//            print("exerciseName \(exerciseName)")
+//            print("reps \(reps)")
+//            print("time \(time)")
+//            cell.textLabel?.text = "\(exerciseName) - Reps: \(reps), Time: \(time)s"
+//        }else {
+//            print("Exercise data is invalid or missing.")
+//        }
         
         return cell
     }
