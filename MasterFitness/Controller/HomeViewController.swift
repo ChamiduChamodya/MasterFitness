@@ -9,7 +9,7 @@ import UIKit
 
 class HomeViewController: UIViewController {
     
-    private var userWorkoutPlan: [String: [Any]] = [:]
+    private var userWorkoutPlan: [String: [[String: Any]]] = [:]
     
     private let scrollView: UIScrollView = {
         let scrollView = UIScrollView()
@@ -51,6 +51,7 @@ class HomeViewController: UIViewController {
             }
             if let user = user {
                 self.welcomeLabel.text = "Welcome \(user.username)"
+                print(user.userWorkoutPlan)
                 self.userWorkoutPlan = user.userWorkoutPlan
             }
         }
@@ -89,6 +90,9 @@ class HomeViewController: UIViewController {
         for i in 0..<cardTitles.count {
             let cardView = createCardView(title: cardTitles[i])
             cardStackView.addArrangedSubview(cardView)
+            
+            let tapGesture = UITapGestureRecognizer(target: self, action: #selector(didTapCard(_:)))
+            cardView.addGestureRecognizer(tapGesture)
             
             if i < cardTitles.count - 1 {
                 let spacingView = UIView()
@@ -171,6 +175,40 @@ class HomeViewController: UIViewController {
 
             if let sceneDelegate = self.view.window?.windowScene?.delegate as? SceneDelegate {
                 sceneDelegate.checkAuthentication()
+            }
+        }
+    }
+    
+    @objc private func didTapCard(_ sender: UITapGestureRecognizer) {
+        guard let cardView = sender.view else { return }
+        
+        // Get the index of the tapped card view
+        if let index = cardStackView.arrangedSubviews.firstIndex(of: cardView) {
+            let cardTitles = ["MyPlan", "Beginner", "Intermediate", "Advanced"]
+            let selectedCard = cardTitles[index]
+            
+            // Perform navigation based on the selected card
+            switch selectedCard {
+            case "MyPlan":
+                // Navigate to MyPlanViewController
+                let myPlanVC = WorkoutPlanViewController()
+                myPlanVC.planTitle = "My Plan"
+                myPlanVC.workoutPlan = self.userWorkoutPlan
+                navigationController?.pushViewController(myPlanVC, animated: true)
+            case "Beginner": break
+                // Navigate to BeginnerViewController
+//                let beginnerVC = BeginnerViewController()
+//                navigationController?.pushViewController(beginnerVC, animated: true)
+            case "Intermediate": break
+                // Navigate to IntermediateViewController
+//                let intermediateVC = IntermediateViewController()
+//                navigationController?.pushViewController(intermediateVC, animated: true)
+            case "Advanced": break
+                // Navigate to AdvancedViewController
+//                let advancedVC = AdvancedViewController()
+//                navigationController?.pushViewController(advancedVC, animated: true)
+            default:
+                break
             }
         }
     }

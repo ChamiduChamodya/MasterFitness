@@ -34,6 +34,7 @@
 		CEFF442229F8235200FB652A /* WorkoutCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEFF442129F8235200FB652A /* WorkoutCategory.swift */; };
 		CEFF44242A0939ED00FB652A /* UserdataViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEFF44232A0939ED00FB652A /* UserdataViewController.swift */; };
 		CEFF44262A0958FA00FB652A /* RegisterUserDetailRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEFF44252A0958FA00FB652A /* RegisterUserDetailRequest.swift */; };
+		CEFF442A2A0D380900FB652A /* WorkoutPlanViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEFF44292A0D380900FB652A /* WorkoutPlanViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -63,6 +64,7 @@
 		CEFF442129F8235200FB652A /* WorkoutCategory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutCategory.swift; sourceTree = "<group>"; };
 		CEFF44232A0939ED00FB652A /* UserdataViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserdataViewController.swift; sourceTree = "<group>"; };
 		CEFF44252A0958FA00FB652A /* RegisterUserDetailRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterUserDetailRequest.swift; sourceTree = "<group>"; };
+		CEFF44292A0D380900FB652A /* WorkoutPlanViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutPlanViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -120,6 +122,7 @@
 				CEFF43FD29ED977D00FB652A /* RegisterViewController.swift */,
 				CEFF43FF29ED979400FB652A /* WebViewController.swift */,
 				CEFF44232A0939ED00FB652A /* UserdataViewController.swift */,
+				CEFF44292A0D380900FB652A /* WorkoutPlanViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -257,6 +260,7 @@
 				CEFF441E29F042A600FB652A /* Validator.swift in Sources */,
 				CEFF43E129ED8F9300FB652A /* AppDelegate.swift in Sources */,
 				CEFF43E329ED8F9300FB652A /* SceneDelegate.swift in Sources */,
+				CEFF442A2A0D380900FB652A /* WorkoutPlanViewController.swift in Sources */,
 				CEFF440029ED979400FB652A /* WebViewController.swift in Sources */,
 				CEFF441829EEDFB700FB652A /* RegisterUserRequest.swift in Sources */,
 			);

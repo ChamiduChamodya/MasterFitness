@@ -118,7 +118,7 @@ class AuthService {
                    let SnapshotData = snapshot.data(),
                    let username = SnapshotData["username"] as? String,
                    let email = SnapshotData["email"] as? String,
-                   let userWorkoutPlan = SnapshotData["userWorkoutPlan"] as? [String : [Any]]{
+                   let userWorkoutPlan = SnapshotData["userWorkoutPlan"] as? [String: [[String: Any]]]{
                     let user = User(username: username, email: email, userUID: userUID, userWorkoutPlan: userWorkoutPlan)
                     completion(user, nil)
                 }
@@ -175,7 +175,7 @@ class AuthService {
             }
     }
     
-    @objc private func getWorkOutPlan(weight: String) -> [String : [Any]] {
+    @objc private func getWorkOutPlan(weight: String) -> [String: [[String: Any]]] {
         
         let weightValue: Int = Int(weight) ?? 0
         

@@ -11,5 +11,5 @@ struct User {
     let username: String
     let email: String
     let userUID: String
-    let userWorkoutPlan: [String : [Any]]
+    let userWorkoutPlan: [String: [[String: Any]]]
 }
