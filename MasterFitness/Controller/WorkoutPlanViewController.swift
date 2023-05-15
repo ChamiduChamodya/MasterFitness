@@ -32,6 +32,7 @@ class WorkoutPlanViewController: UIViewController {
         titleLabel.text = planTitle
         titleLabel.font = UIFont.boldSystemFont(ofSize: 17)
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
+        titleLabel.textColor = .white
         view.addSubview(titleLabel)
 
         // Create a button with play icon
@@ -62,9 +63,17 @@ class WorkoutPlanViewController: UIViewController {
             tableView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
             tableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
         ])
+        
+        playButton.addTarget(self, action: #selector(playButtonTapped), for: .touchUpInside)
 
         // Reload table view to display data
         tableView.reloadData()
+    }
+    
+    @objc private func playButtonTapped() {
+        let exerciseViewController = ExcerciseViewController()
+        exerciseViewController.exercises = workoutPlan.flatMap { $0.value }
+        navigationController?.pushViewController(exerciseViewController, animated: true)
     }
     
 }
@@ -101,7 +110,8 @@ extension WorkoutPlanViewController: UITableViewDelegate, UITableViewDataSource 
            let reps = Int(repsString),
            let timeString = exercise["time"] as? String,
            let time = Int(timeString) {
-            cell.textLabel?.text = "\(exerciseName) - Reps: \(reps), Time: \(time)s"
+            cell.textLabel?.textColor = .black
+            cell.textLabel?.text = "\(exerciseName) - Reps: \(reps) - Time: \(time)s"
         }else {
             print("Exercise data is invalid or missing.")
         }
