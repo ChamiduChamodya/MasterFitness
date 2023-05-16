@@ -10,6 +10,9 @@ import UIKit
 class HomeViewController: UIViewController {
     
     private var userWorkoutPlan: [String: [[String: Any]]] = [:]
+    private var begginnerWorkoutPlan: [String: [[String: Any]]] = [:]
+    private var intermediatekoutPlan: [String: [[String: Any]]] = [:]
+    private var advancedWorkoutPlan: [String: [[String: Any]]] = [:]
     
     private let scrollView: UIScrollView = {
         let scrollView = UIScrollView()
@@ -42,6 +45,7 @@ class HomeViewController: UIViewController {
         setupWelcomeLabel()
         setupCards()
         
+        // Fetch User
         AuthService.shared.fetchUser { [weak self] user, error in
             guard let self = self else {return}
 
@@ -53,6 +57,48 @@ class HomeViewController: UIViewController {
                 self.welcomeLabel.text = "Welcome \(user.username)"
                 print(user.userWorkoutPlan)
                 self.userWorkoutPlan = user.userWorkoutPlan
+            }
+        }
+        
+        // Fetch Begginner Workout
+        AuthService.shared.fetchWokoutsBegginer { [weak self] workout, error in
+            guard let self = self else {return}
+
+            if let error = error {
+                AlertManager.showFetchingWorkoutErrorAlert(on: self, with: error)
+                return
+            }
+            if let workout = workout {
+//                print("Begginner Plan \(workout.workoutPlan)")
+                self.begginnerWorkoutPlan = workout.workoutPlan
+            }
+        }
+        
+        // Fetch Intermidiate Workout
+        AuthService.shared.fetchWokoutsIntermediate { [weak self] workout, error in
+            guard let self = self else {return}
+
+            if let error = error {
+                AlertManager.showFetchingWorkoutErrorAlert(on: self, with: error)
+                return
+            }
+            if let workout = workout {
+//                print("Intermidiate Plan \(workout.workoutPlan)")
+                self.intermediatekoutPlan = workout.workoutPlan
+            }
+        }
+        
+        // Fetch Advanced Workout
+        AuthService.shared.fetchWokoutsAdvanced { [weak self] workout, error in
+            guard let self = self else {return}
+
+            if let error = error {
+                AlertManager.showFetchingWorkoutErrorAlert(on: self, with: error)
+                return
+            }
+            if let workout = workout {
+//                print("Advanced Plan \(workout.workoutPlan)")
+                self.advancedWorkoutPlan = workout.workoutPlan
             }
         }
     }
@@ -185,28 +231,34 @@ class HomeViewController: UIViewController {
         // Get the index of the tapped card view
         if let index = cardStackView.arrangedSubviews.firstIndex(of: cardView) {
             let cardTitles = ["MyPlan", "Beginner", "Intermediate", "Advanced"]
-            let selectedCard = cardTitles[index]
+            let selectedCard = cardTitles[index / 2]
+            
+            print("index \(index)")
+            print("selectedcard \(selectedCard)")
+            print("cardTitles[Index] \(selectedCard)")
             
             // Perform navigation based on the selected card
             switch selectedCard {
             case "MyPlan":
-                // Navigate to MyPlanViewController
                 let myPlanVC = WorkoutPlanViewController()
                 myPlanVC.planTitle = "My Plan"
                 myPlanVC.workoutPlan = self.userWorkoutPlan
                 navigationController?.pushViewController(myPlanVC, animated: true)
-            case "Beginner": break
-                // Navigate to BeginnerViewController
-//                let beginnerVC = BeginnerViewController()
-//                navigationController?.pushViewController(beginnerVC, animated: true)
-            case "Intermediate": break
-                // Navigate to IntermediateViewController
-//                let intermediateVC = IntermediateViewController()
-//                navigationController?.pushViewController(intermediateVC, animated: true)
-            case "Advanced": break
-                // Navigate to AdvancedViewController
-//                let advancedVC = AdvancedViewController()
-//                navigationController?.pushViewController(advancedVC, animated: true)
+            case "Beginner":
+                let myPlanVC = WorkoutPlanViewController()
+                myPlanVC.planTitle = "Beginner Plan"
+                myPlanVC.workoutPlan = self.begginnerWorkoutPlan
+                navigationController?.pushViewController(myPlanVC, animated: true)
+            case "Intermediate":
+                let myPlanVC = WorkoutPlanViewController()
+                myPlanVC.planTitle = "Intermediate Plan"
+                myPlanVC.workoutPlan = self.intermediatekoutPlan
+                navigationController?.pushViewController(myPlanVC, animated: true)
+            case "Advanced":
+                let myPlanVC = WorkoutPlanViewController()
+                myPlanVC.planTitle = "Advanced Plan"
+                myPlanVC.workoutPlan = self.advancedWorkoutPlan
+                navigationController?.pushViewController(myPlanVC, animated: true)
             default:
                 break
             }

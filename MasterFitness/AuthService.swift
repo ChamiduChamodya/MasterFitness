@@ -139,12 +139,8 @@ class AuthService {
                 }
                 if let snapshot = snapshot,
                    let SnapshotData = snapshot.data(),
-                   let abs = SnapshotData["abs"],
-                   let arm = SnapshotData["arm"],
-                   let chest = SnapshotData["chest"],
-                   let leg = SnapshotData["leg"],
-                   let shoulderAndback = SnapshotData["shoulder&back"] {
-                    let workout = Workout(abs: abs, arm: arm, chest: chest, leg: leg, shoulderandBack: shoulderAndback)
+                   let workoutPlan = SnapshotData["workoutPlan"] as? [String: [[String: Any]]] {
+                    let workout = Workout(workoutPlan: workoutPlan)
                     completion(workout, nil)
                 }
             }
@@ -156,7 +152,7 @@ class AuthService {
         let db = Firestore.firestore()
 
         db.collection("workouts")
-            .document("beginner")
+            .document("intermediate")
             .getDocument { snapshot, error in
                 if let error = error {
                     completion(nil, error)
@@ -164,12 +160,29 @@ class AuthService {
                 }
                 if let snapshot = snapshot,
                    let SnapshotData = snapshot.data(),
-                   let abs = SnapshotData["abs"],
-                   let arm = SnapshotData["arm"],
-                   let chest = SnapshotData["chest"],
-                   let leg = SnapshotData["leg"],
-                   let shoulderAndback = SnapshotData["shoulder&back"] {
-                    let workout = Workout(abs: abs, arm: arm, chest: chest, leg: leg, shoulderandBack: shoulderAndback)
+                   let workoutPlan = SnapshotData["workoutPlan"] as? [String: [[String: Any]]] {
+                    let workout = Workout(workoutPlan: workoutPlan)
+                    completion(workout, nil)
+                }
+            }
+    }
+    
+    public func fetchWokoutsAdvanced(completion: @escaping(Workout?, Error?) -> Void){
+        guard (Auth.auth().currentUser?.uid) != nil else { return }
+
+        let db = Firestore.firestore()
+
+        db.collection("workouts")
+            .document("advanced")
+            .getDocument { snapshot, error in
+                if let error = error {
+                    completion(nil, error)
+                    return
+                }
+                if let snapshot = snapshot,
+                   let SnapshotData = snapshot.data(),
+                   let workoutPlan = SnapshotData["workoutPlan"] as? [String: [[String: Any]]] {
+                    let workout = Workout(workoutPlan: workoutPlan)
                     completion(workout, nil)
                 }
             }

@@ -8,9 +8,5 @@
 import Foundation
 
 struct Workout {
-    let abs: Any
-    let arm: Any
-    let chest : Any
-    let leg : Any
-    let shoulderandBack : Any
+    let workoutPlan: [String: [[String: Any]]]
 }

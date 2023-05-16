@@ -101,3 +101,11 @@ extension AlertManager {
         self.showBasicalert(on: vc, title: "Error Fetching User", message: "\(error.localizedDescription)")
     }
 }
+
+// Workout Messages
+extension AlertManager {
+
+    public static func showFetchingWorkoutErrorAlert(on vc : UIViewController, with error : Error){
+        self.showBasicalert(on: vc, title: "Unknown Error Fetching Workout", message: nil)
+    }
+}
