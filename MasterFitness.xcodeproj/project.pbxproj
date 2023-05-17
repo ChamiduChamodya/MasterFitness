@@ -38,6 +38,7 @@
 		CEFF442C2A1272ED00FB652A /* ExcerciseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEFF442B2A1272ED00FB652A /* ExcerciseViewController.swift */; };
 		CEFF442E2A150D9800FB652A /* ScheduleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEFF442D2A150D9800FB652A /* ScheduleViewController.swift */; };
 		CEFF44302A152EDD00FB652A /* UserSchedule.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEFF442F2A152EDD00FB652A /* UserSchedule.swift */; };
+		CEFF44322A15449B00FB652A /* WorkoutPlanCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEFF44312A15449A00FB652A /* WorkoutPlanCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -71,6 +72,7 @@
 		CEFF442B2A1272ED00FB652A /* ExcerciseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExcerciseViewController.swift; sourceTree = "<group>"; };
 		CEFF442D2A150D9800FB652A /* ScheduleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleViewController.swift; sourceTree = "<group>"; };
 		CEFF442F2A152EDD00FB652A /* UserSchedule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSchedule.swift; sourceTree = "<group>"; };
+		CEFF44312A15449A00FB652A /* WorkoutPlanCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutPlanCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -153,6 +155,7 @@
 				CEFF440329ED98FB00FB652A /* AuthHeaderView.swift */,
 				CEFF440529ED992C00FB652A /* CustomButton.swift */,
 				CEFF440729ED995900FB652A /* CustomTextField.swift */,
+				CEFF44312A15449A00FB652A /* WorkoutPlanCell.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -264,6 +267,7 @@
 				CEFF440429ED98FB00FB652A /* AuthHeaderView.swift in Sources */,
 				CEFF441A29EEE21500FB652A /* User.swift in Sources */,
 				CEFF442229F8235200FB652A /* WorkoutCategory.swift in Sources */,
+				CEFF44322A15449B00FB652A /* WorkoutPlanCell.swift in Sources */,
 				CEFF44262A0958FA00FB652A /* RegisterUserDetailRequest.swift in Sources */,
 				CEFF44302A152EDD00FB652A /* UserSchedule.swift in Sources */,
 				CEFF43F629ED947F00FB652A /* ViewController.swift in Sources */,
