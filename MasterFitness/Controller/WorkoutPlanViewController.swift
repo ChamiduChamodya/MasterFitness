@@ -14,20 +14,10 @@ class WorkoutPlanViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-//        if let planTitle = planTitle as? String {
-//            print("planTitle \(planTitle)")
-//        }
-//
-//        if let workoutPlan = workoutPlan as? [String: [Any]] {
-//            print("Data loaded \(workoutPlan)")
-//        }
-        
         setupUI()
     }
     
     private func setupUI() {
-        // Create a label for plan title
         let titleLabel = UILabel()
         titleLabel.text = planTitle
         titleLabel.font = UIFont.boldSystemFont(ofSize: 17)
@@ -35,14 +25,12 @@ class WorkoutPlanViewController: UIViewController {
         titleLabel.textColor = .white
         view.addSubview(titleLabel)
 
-        // Create a button with play icon
         let playButton = UIButton(type: .system)
         playButton.setTitle("Play", for: .normal)
         playButton.setImage(UIImage(systemName: "play.fill"), for: .normal)
         playButton.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(playButton)
 
-        // Create a table view to display workout plan data
         let tableView = UITableView()
         tableView.translatesAutoresizingMaskIntoConstraints = false
         tableView.delegate = self
@@ -84,25 +72,16 @@ extension WorkoutPlanViewController: UITableViewDelegate, UITableViewDataSource 
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        let categories = Array(workoutPlan.keys)
-        let category = categories[section]
+        let category = Array(workoutPlan.keys)[section]
         return workoutPlan[category]?.count ?? 0
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
         
-        let categories = Array(workoutPlan.keys)
-        let category = categories[indexPath.section]
+        let category = Array(workoutPlan.keys)[indexPath.section]
         let exercises = workoutPlan[category]
         let exercise = exercises?[indexPath.row]
-        
-        print("exercises \(String(describing: exercises))")
-        print("exercise \(String(describing: exercise))")
-        
-        print("exerciseName \(String(describing: exercise!["exercise"] as? String))")
-        print("reps \(String(describing: exercise!["reps"] as? String))")
-        print("time \(String(describing: exercise!["time"] as? String))")
         
         if let exercise = exercise,
            let exerciseName = exercise["exercise"] as? String,
@@ -116,23 +95,10 @@ extension WorkoutPlanViewController: UITableViewDelegate, UITableViewDataSource 
             print("Exercise data is invalid or missing.")
         }
         
-//        if let exercise = exercise,
-//           let exerciseName = exercise["exercise"] as? String,
-//           let reps = exercise["reps"] as? Int,
-//           let time = exercise["time"] as? Int {
-//            print("exerciseName \(exerciseName)")
-//            print("reps \(reps)")
-//            print("time \(time)")
-//            cell.textLabel?.text = "\(exerciseName) - Reps: \(reps), Time: \(time)s"
-//        }else {
-//            print("Exercise data is invalid or missing.")
-//        }
-        
         return cell
     }
     
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        let categories = Array(workoutPlan.keys)
-        return categories[section]
+        return Array(workoutPlan.keys)[section]
     }
 }
