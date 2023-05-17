@@ -44,6 +44,7 @@ class HomeViewController: UIViewController {
         setupScrollView()
         setupWelcomeLabel()
         setupCards()
+        setupScheduleNav()
         
         // Fetch User
         AuthService.shared.fetchUser { [weak self] user, error in
@@ -147,6 +148,34 @@ class HomeViewController: UIViewController {
                 cardStackView.addArrangedSubview(spacingView)
             }
         }
+    }
+    
+    private func setupScheduleNav() {
+        // Create and configure the floating button
+        let floatingButton = UIButton(type: .custom)
+        floatingButton.setImage(UIImage(systemName: "calendar"), for: .normal)
+        floatingButton.backgroundColor = .systemBlue
+        floatingButton.tintColor = .white
+        floatingButton.layer.cornerRadius = 30
+        floatingButton.clipsToBounds = true
+        floatingButton.translatesAutoresizingMaskIntoConstraints = false
+        floatingButton.addTarget(self, action: #selector(didTapFloatingButton), for: .touchUpInside)
+
+        // Add the floating button to the view
+        view.addSubview(floatingButton)
+
+        // Configure the constraints for the floating button
+        NSLayoutConstraint.activate([
+            floatingButton.widthAnchor.constraint(equalToConstant: 60),
+            floatingButton.heightAnchor.constraint(equalToConstant: 60),
+            floatingButton.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -16),
+            floatingButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -16)
+        ])
+    }
+    
+    @objc private func didTapFloatingButton() {
+        let scheduleVC = ScheduleViewController()
+        navigationController?.pushViewController(scheduleVC, animated: true)
     }
     
     private func createCardView(title: String) -> UIView {

@@ -723,4 +723,57 @@ class AuthService {
         }
     }
     
+    public func createUserSchedule(userSchedule: UserSchedule, completion: @escaping (Error?) -> Void) {
+        guard let userID = Auth.auth().currentUser?.uid else {
+            return
+        }
+
+        let db = Firestore.firestore()
+
+        let scheduleData: [String: Any] = [
+            "workoutName": userSchedule.workoutName,
+            "workoutFrequency": userSchedule.workoutFrequency
+        ]
+
+        db.collection("userSchedules")
+            .document(userID)
+            .setData(scheduleData, merge: true) { error in
+                if let error = error {
+                    completion(error)
+                } else {
+                    completion(nil)
+                }
+            }
+    }
+    
+    public func fetchUserSchedule(completion: @escaping (UserSchedule?, Error?) -> Void) {
+        guard let userID = Auth.auth().currentUser?.uid else {
+            return
+        }
+
+        let db = Firestore.firestore()
+
+        db.collection("userSchedules")
+            .document(userID)
+            .getDocument { snapshot, error in
+                if let error = error {
+                    completion(nil, error)
+                    return
+                }
+
+                if let snapshot = snapshot, snapshot.exists {
+                    if let snapshotData = snapshot.data(),
+                       let workoutName = snapshotData["workoutName"] as? String,
+                       let workoutFrequency = snapshotData["workoutFrequency"] as? String {
+                        let userSchedule = UserSchedule(workoutName: workoutName, workoutFrequency: workoutFrequency)
+                        completion(userSchedule, nil)
+                    } else {
+                        completion(nil, nil)
+                    }
+                } else {
+                    completion(nil, nil)
+                }
+            }
+    }
+    
 }
