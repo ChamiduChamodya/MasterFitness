@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import WebKit
 
 class ExcerciseViewController: UIViewController {
     var exercises: [[String: Any]] = []
@@ -16,19 +17,17 @@ class ExcerciseViewController: UIViewController {
     private let exerciseLabel = UILabel()
     private let repsLabel = UILabel()
     private let timerLabel = UILabel()
+    var videoPlayer: WKWebView!
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .white
-        
+        view.backgroundColor = .black
         setupUI()
-
         startExercise(index: currentIndex)
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        
         // Stop the timer when leaving the view
         stopTimer()
     }
@@ -38,18 +37,21 @@ class ExcerciseViewController: UIViewController {
         exerciseLabel.font = UIFont.boldSystemFont(ofSize: 24)
         exerciseLabel.textAlignment = .center
         exerciseLabel.translatesAutoresizingMaskIntoConstraints = false
+        exerciseLabel.textColor = .white
         view.addSubview(exerciseLabel)
         
         // Reps label
         repsLabel.font = UIFont.systemFont(ofSize: 18)
         repsLabel.textAlignment = .center
         repsLabel.translatesAutoresizingMaskIntoConstraints = false
+        repsLabel.textColor = .white
         view.addSubview(repsLabel)
         
         // Timer label
         timerLabel.font = UIFont.systemFont(ofSize: 32)
         timerLabel.textAlignment = .center
         timerLabel.translatesAutoresizingMaskIntoConstraints = false
+        timerLabel.textColor = .white
         view.addSubview(timerLabel)
         
         // Constraints
@@ -61,7 +63,7 @@ class ExcerciseViewController: UIViewController {
             repsLabel.topAnchor.constraint(equalTo: exerciseLabel.bottomAnchor, constant: 20),
             
             timerLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            timerLabel.topAnchor.constraint(equalTo: repsLabel.bottomAnchor, constant: 20)
+            timerLabel.topAnchor.constraint(equalTo: repsLabel.bottomAnchor, constant: 20),
         ])
     }
     
@@ -83,11 +85,46 @@ class ExcerciseViewController: UIViewController {
             repsLabel.text = "Reps: \(reps)"
             timeRemaining = time
             
+            if let videoURLString = exercise["videoURL"] as? String, let videoURL = URL(string: videoURLString) {
+                // Load the YouTube video
+                setupVideoPlayer(with: videoURL)
+            } else {
+                // No video URL provided
+                removeVideoPlayer()
+            }
+            
             // Start the timer
             startTimer()
         } else {
             print("Exercise data is invalid or missing.")
         }
+    }
+    
+    private func setupVideoPlayer(with videoURL: URL) {
+        let webConfiguration = WKWebViewConfiguration()
+        webConfiguration.defaultWebpagePreferences.allowsContentJavaScript = true
+        webConfiguration.allowsInlineMediaPlayback = true
+        webConfiguration.mediaTypesRequiringUserActionForPlayback = []
+        videoPlayer = WKWebView(frame: CGRect(x: 0, y: 0, width: view.frame.width, height: 250), configuration: webConfiguration)
+        videoPlayer?.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(videoPlayer!)
+        
+        NSLayoutConstraint.activate([
+            videoPlayer!.topAnchor.constraint(equalTo: view.topAnchor, constant: 120),
+            videoPlayer!.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            videoPlayer!.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            videoPlayer!.heightAnchor.constraint(equalToConstant: 250)
+        ])
+        
+        let videoRequest = URLRequest(url: videoURL)
+        videoPlayer?.load(videoRequest)
+        
+        videoPlayer?.navigationDelegate = self
+    }
+    
+    private func removeVideoPlayer() {
+        videoPlayer?.removeFromSuperview()
+        videoPlayer = nil
     }
     
     private func startTimer() {
@@ -119,3 +156,22 @@ class ExcerciseViewController: UIViewController {
     }
 
 }
+
+extension ExcerciseViewController: WKNavigationDelegate {
+    func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
+        // Hide the YouTube player controls
+        let hideControlsScript = """
+        var player = document.querySelector('video');
+        player.muted = true;
+        player.play();
+        player.controls = false;
+        """
+        webView.evaluateJavaScript(hideControlsScript, completionHandler: nil)
+    }
+}
+
+
+
+
+
+
