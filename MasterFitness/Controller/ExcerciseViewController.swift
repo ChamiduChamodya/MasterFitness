@@ -17,6 +17,11 @@ class ExcerciseViewController: UIViewController {
     private let exerciseLabel = UILabel()
     private let repsLabel = UILabel()
     private let timerLabel = UILabel()
+    let howToTitleLabel = UILabel()
+    let howToLabel = UILabel()
+    let effectivePartsTitleLabel = UILabel()
+    let effectivePartsLabel = UILabel()
+    let stackView = UIStackView()
     var videoPlayer: WKWebView!
 
     override func viewDidLoad() {
@@ -33,6 +38,12 @@ class ExcerciseViewController: UIViewController {
     }
     
     private func setupUI() {
+        
+        stackView.axis = .vertical
+        stackView.spacing = 10
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(stackView)
+        
         // Exercise label
         exerciseLabel.font = UIFont.boldSystemFont(ofSize: 24)
         exerciseLabel.textAlignment = .center
@@ -54,6 +65,42 @@ class ExcerciseViewController: UIViewController {
         timerLabel.textColor = .white
         view.addSubview(timerLabel)
         
+        // How To label
+        howToTitleLabel.font = UIFont.boldSystemFont(ofSize: 18)
+        howToTitleLabel.text = "How To:"
+        howToTitleLabel.textAlignment = .left
+        howToTitleLabel.translatesAutoresizingMaskIntoConstraints = false
+        howToTitleLabel.textColor = .white
+//        view.addSubview(howToTitleLabel)
+        
+        howToLabel.font = UIFont.systemFont(ofSize: 16)
+        howToLabel.textAlignment = .left
+        howToLabel.numberOfLines = 0
+        howToLabel.translatesAutoresizingMaskIntoConstraints = false
+        howToLabel.textColor = .white
+//        view.addSubview(howToLabel)
+        
+        // Effective Parts label
+        effectivePartsTitleLabel.font = UIFont.boldSystemFont(ofSize: 18)
+        effectivePartsTitleLabel.text = "Effective Parts:"
+        effectivePartsTitleLabel.textAlignment = .left
+        effectivePartsTitleLabel.translatesAutoresizingMaskIntoConstraints = false
+        effectivePartsTitleLabel.textColor = .white
+//        view.addSubview(effectivePartsTitleLabel)
+        
+        effectivePartsLabel.font = UIFont.systemFont(ofSize: 16)
+        effectivePartsLabel.textAlignment = .left
+        effectivePartsLabel.numberOfLines = 0
+        effectivePartsLabel.translatesAutoresizingMaskIntoConstraints = false
+        effectivePartsLabel.textColor = .white
+//        view.addSubview(effectivePartsLabel)
+        
+        // Add the labels to the stack view
+        stackView.addArrangedSubview(howToTitleLabel)
+        stackView.addArrangedSubview(howToLabel)
+        stackView.addArrangedSubview(effectivePartsTitleLabel)
+        stackView.addArrangedSubview(effectivePartsLabel)
+        
         // Constraints
         NSLayoutConstraint.activate([
             exerciseLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
@@ -64,6 +111,11 @@ class ExcerciseViewController: UIViewController {
             
             timerLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             timerLabel.topAnchor.constraint(equalTo: repsLabel.bottomAnchor, constant: 20),
+            
+            stackView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
+            stackView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
+            stackView.topAnchor.constraint(equalTo: timerLabel.bottomAnchor, constant: 15),
+            stackView.bottomAnchor.constraint(lessThanOrEqualTo: view.bottomAnchor, constant: -10)
         ])
     }
     
@@ -80,10 +132,14 @@ class ExcerciseViewController: UIViewController {
            let repsString = exercise["reps"] as? String,
            let reps = Int(repsString),
            let timeString = exercise["time"] as? String,
-           let time = Int(timeString) {
+           let time = Int(timeString),
+           let howTo = exercise["howTo"] as? String,
+            let effectiveParts = exercise["effectivePart"] as? String {
             exerciseLabel.text = exerciseName
             repsLabel.text = "Reps: \(reps)"
             timeRemaining = time
+            howToLabel.text = howTo
+            effectivePartsLabel.text = effectiveParts
             
             if let videoURLString = exercise["videoURL"] as? String, let videoURL = URL(string: videoURLString) {
                 // Load the YouTube video
